@@ -36,10 +36,6 @@ def create_admittance_matrices():
     Y_sh_diag = np.array((A @ diags(y_sh) @ A.T).diagonal()).flatten()
     Y_sh = diags(Y_sh_diag)
 
-    # Full bus admittance matrix
-    #Y = Y_0 + Y_sh
-    #Y_dense = Y.toarray()
-
     # Extract conductance and susceptance matrices
     G0 = np.real(Y_0.toarray())  # Conductance matrix
     B0 = np.imag(Y_0.toarray())  # Susceptance matrix
