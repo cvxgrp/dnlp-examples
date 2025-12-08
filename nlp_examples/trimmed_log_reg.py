@@ -82,11 +82,11 @@ prob = cp.Problem(objective, constraints)
 print("Solving trimmed logistic regression on adversarially flipped data...")
 # knitro takes two minutes, ipopt needs many more iterations and takes about an hour
 prob.solve(nlp=True, solver=cp.KNITRO, verbose=True, algorithm=0)
-#prob.solve(nlp=True, solver=cp.IPOPT, verbose=True, least_square_init_duals='no')    
+#prob.solve(nlp=True, solver=cp.IPOPT, verbose=True)    
 # predictions on original test set
 logits = X_test @ theta.value[1:] + theta.value[0]
 y_pred = (logits >= 0).astype(int)
 acc_trimmed = accuracy_score(y_test, y_pred)
 print("\nTest accuracy with trimming after adversarial label flipping:", acc_trimmed)
 
-print("weights of trimmed data points:", weights[top_indices].value)
+print("weights of trimmed data points:", np.round(weights[top_indices].value, 2))
