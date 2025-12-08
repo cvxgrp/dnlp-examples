@@ -1,48 +1,5 @@
 import numpy as np
 from scipy.sparse import csr_matrix, diags
-import matplotlib.pyplot as plt
-from matplotlib.patches import FancyArrowPatch, Circle
-
-import numpy as np
-from scipy.sparse import csr_matrix, diags
-
-def branch_matrices():
-    N = 9
-    # Branch data: (from_bus, to_bus, resistance, reactance, susceptance)
-    branch_data = np.array([
-        [0, 3, 0.0, 0.0576, 0.0],
-        [3, 4, 0.017, 0.092, 0.158],
-        [5, 4, 0.039, 0.17, 0.358],
-        [2, 5, 0.0, 0.0586, 0.0],
-        [5, 6, 0.0119, 0.1008, 0.209],
-        [7, 6, 0.0085, 0.072, 0.149],
-        [1, 7, 0.0, 0.0625, 0.0],
-        [7, 8, 0.032, 0.161, 0.306],
-        [3, 8, 0.01, 0.085, 0.176],
-    ], dtype=float)
-
-    G_series = np.zeros((N,N))
-    B_series = np.zeros((N,N))
-    G_shunt = np.zeros((N,N))
-    B_shunt = np.zeros((N,N))
-    base_MVA = 100
-
-    for f,t,r,x,bc in branch_data:
-        z = (r + 1j*x) / base_MVA
-        y = 1.0/z                     # pu admittance
-        g, b = y.real, y.imag
-
-        f, t = int(f), int(t)
-        # series branch
-        G_series[f,t] = G_series[t,f] = g
-        B_series[f,t] = B_series[t,f] = b
-
-        # line-charging shunt (split equally)
-        b_shunt = (bc / 2.0) * base_MVA
-        B_shunt[f,f] += b_shunt
-        B_shunt[t,t] += b_shunt
-
-    return G_series, B_series, G_shunt, B_shunt
 
 def create_admittance_matrices():
     N = 9

@@ -45,8 +45,5 @@ def plot_circles(centers, radius, L, filename="circle_packing.pdf"):
     # limits and cosmetics
     ax.set_xlim(float(-square_size / 2), float(square_size / 2))
     ax.set_ylim(float(-square_size / 2), float(square_size / 2))
-    #ax.set_xlabel("x")
-    #ax.set_ylabel("y")
-    #ax.set_title(f"Circle packing (ratio={ratio:.3f})")
     print(f"Circle packing (ratio={ratio:.3f})")
     plt.savefig(filename)
