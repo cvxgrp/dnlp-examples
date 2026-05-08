@@ -13,7 +13,7 @@ for k in range(K - 1):
 
 a_min, a_max = 1.0, 10.0
 b_min, b_max = 100.0, 1000.0
-Q_crit_min, Q_crit_max = 5000, 10000
+Q_crit_min, Q_crit_max = 6000, 10000
 R_min, R_max = 0.01, 0.3
 C1_min, C1_max = 500.0, 2000.0
 
